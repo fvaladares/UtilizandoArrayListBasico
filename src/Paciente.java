@@ -2,7 +2,7 @@ import java.util.UUID;
 
 public class Paciente {
 
-    private UUID id;
+    private UUID id; // Identificador único
     private String nomeCompleto;
     private String dataNascimento;
 

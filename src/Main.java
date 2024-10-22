@@ -1,19 +1,32 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Main {
 
+
+    // Observem que o processo de impressão é o mesmo e se repete várias vezes.
+    // Tente extraír para um novo método. Se estiver trabalhando no main, o método deve ser estático
     public static void main(String[] args) {
         Repository repository = new Repository();
         Paciente paciente;
         ArrayList<Paciente> pacientes;
 
 
-        System.out.println("Cadastrando alguns pacientes");
+        System.out.println("Cadastrando alguns pacientes...");
+
+        System.out.println();
+        System.out.println("-----------------");
+        System.out.println();
 
         repository.cadastrarPaciente(
                 new Paciente(
                         "Fulano de Tal",
                         "01/01/1982"));
+        repository.cadastrarPaciente(
+                new Paciente(
+                        "Fulano de Tal",
+                        "06/01/1982"));
         repository.cadastrarPaciente(
                 new Paciente("Papai Noel",
                 "25/12/2000"));
@@ -26,14 +39,22 @@ public class Main {
         pacientes = repository.listarTodos();
 
         System.out.println();
-
+        // IMPRIMINDO A LISTA RETORNADA
         for (int i = 0; i < pacientes.size(); i++) {
             System.out.println("Paciente " + i + ": ");
             System.out.println(pacientes.get(i));
         }
 
-        pacientes = repository.buscarPorNome("Fulano tal");
 
+        System.out.println();
+        System.out.println("-----------------");
+        System.out.println();
+
+
+        pacientes = repository.buscarPorNome("FULANO DE TAL");
+
+        System.out.println("Imprimindo todos os pacientes com o " +
+                "nome fulano de tal");
         if (!pacientes.isEmpty()) {
             for (int i = 0; i < pacientes.size(); i++) {
                 System.out.println("Paciente " + i + ": ");
@@ -44,18 +65,27 @@ public class Main {
             System.out.println("Pessoa não encontrada");
         }
 
+        System.out.println();
+
+        UUID idParaBusca = repository.listarTodos().get(0).getId();
+        //buscando por ID
         paciente = repository
-                .buscarID(repository.listarTodos().get(0).getId());
+                .buscarID(idParaBusca);
 
-        System.out.println("Paciente: " + paciente);
+        System.out.println("Paciente do ID " + idParaBusca + ": " + paciente);
 
-        paciente.alterarNome("Meu nome nome");
+        // Alterando o nome
+        paciente.alterarNome("Meu Novo Nome");
 
+        // Alterando o elemento no repositório
         repository.alterarPaciente(paciente);
 
 
         pacientes = repository.listarTodos();
 
+        System.out.println();
+        System.out.println("-----------------");
+        System.out.println();
         for (int i = 0; i < pacientes.size(); i++) {
             System.out.println("Paciente " + i + ": ");
             System.out.println(pacientes.get(i));

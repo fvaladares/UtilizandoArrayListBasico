@@ -24,8 +24,8 @@ public class Repository {
         ArrayList<Paciente> pacientes = new ArrayList<>();
         Paciente paciente;
 
-        for (Paciente value : repository) {
-            paciente = value;
+        for (int i = 0; i < repository.size(); i++) {
+            paciente = repository.get(i);
             if (paciente.getNomeCompleto().equalsIgnoreCase(nome)) {
                 pacientes.add(paciente);
             }
