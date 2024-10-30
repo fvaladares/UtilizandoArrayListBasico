@@ -46,7 +46,7 @@ public class Paciente {
     }
 
     public boolean alterarNome(String novoNome) {
-        if (!novoNome.isEmpty() && !novoNome.isBlank()) {
+        if (!novoNome.isBlank()) {
             this.nomeCompleto = novoNome;
             return true;
         } else {

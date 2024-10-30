@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -21,11 +20,11 @@ public class Main {
 
         repository.cadastrarPaciente(
                 new Paciente(
-                        "Fulano de Tal",
+                        "Mula sem cabeça",
                         "01/01/1982"));
         repository.cadastrarPaciente(
                 new Paciente(
-                        "Fulano de Tal",
+                        "Curupira",
                         "06/01/1982"));
         repository.cadastrarPaciente(
                 new Paciente("Papai Noel",
@@ -50,7 +49,6 @@ public class Main {
         System.out.println("-----------------");
         System.out.println();
 
-
         pacientes = repository.buscarPorNome("FULANO DE TAL");
 
         System.out.println("Imprimindo todos os pacientes com o " +
@@ -67,6 +65,11 @@ public class Main {
 
         System.out.println();
 
+//        Paciente p = repository.listarTodos().get(0);
+//        UUID id = p.getId();
+
+
+        // Obtém o id de um elemento da lista
         UUID idParaBusca = repository.listarTodos().get(0).getId();
         //buscando por ID
         paciente = repository
@@ -75,10 +78,10 @@ public class Main {
         System.out.println("Paciente do ID " + idParaBusca + ": " + paciente);
 
         // Alterando o nome
-        paciente.alterarNome("Meu Novo Nome");
+        paciente.alterarNome("Cuca");
 
         // Alterando o elemento no repositório
-        repository.alterarPaciente(paciente);
+//        repository.alterarPaciente(paciente);
 
 
         pacientes = repository.listarTodos();
